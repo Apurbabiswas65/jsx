@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    /* Light Mode - OwnsBroker Theme */
+    --background: 195 100% 97%; /* #F4FDFF - Light white-blue background */
+    --foreground: 218 67% 33%; /* #1C448E - Dark Navy Blue for text/headings */
+
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 218 67% 33%; /* Dark Navy Blue */
+
+    --popover: 0 0% 100%; /* White */
+    --popover-foreground: 218 67% 33%; /* Dark Navy Blue */
+
+    /* Primary Blue */
+    --primary: 218 67% 33%; /* #1C448E */
+    --primary-foreground: 0 0% 98%; /* White text on primary */
+
+    /* Secondary - Light white-blue */
+    --secondary: 195 100% 97%; /* #F4FDFF */
+    --secondary-foreground: 218 67% 33%; /* Dark Navy Blue text on secondary */
+
+    /* Muted/Accent: Soft muted blue-grey */
+    --muted: 258 8% 90%; /* Lighter variant of #938BA1 for backgrounds */
+    --muted-foreground: 258 8% 40%; /* Darker variant of #938BA1 for text */
+
+    /* Accent: Also uses muted blue-grey for highlights/borders */
+    --accent: 258 8% 90%; /* Lighter variant of #938BA1 */
+    --accent-foreground: 258 8% 40%; /* Darker variant of #938BA1 */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 258 8% 80%; /* Mid-tone variant of #938BA1 for borders */
+    --input: 258 8% 85%; /* Slightly lighter border for inputs */
+    --ring: 218 67% 33%; /* Primary color for focus rings */
+    /* --- End Light Mode OwnsBroker Theme --- */
+
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+
+    /* Sidebar uses theme colors */
+    /* Example: Keeping sidebar darker */
+     --sidebar-background: hsl(222 47% 11%); /* Very Dark Blue for sidebar */
+     --sidebar-foreground: hsl(210 40% 98%); /* Light text on sidebar */
+     --sidebar-primary: hsl(218 67% 53%); /* Lighter Blue for sidebar active */
+     --sidebar-primary-foreground: hsl(0 0% 98%);
+     --sidebar-accent: hsl(222 47% 20%); /* Darker Muted Blue for sidebar hover */
+     --sidebar-accent-foreground: hsl(210 40% 98%);
+     --sidebar-border: hsl(222 47% 25%); /* Darker border */
+     --sidebar-ring: hsl(218 67% 53%);
+
+    /* --- Navbar colors --- */
+    /* Define navbar specific colors if needed, or rely on existing theme variables */
+    /* Example: Use card background for navbar */
+    /* --navbar-background: hsl(var(--card)); */
+    /* --navbar-foreground: hsl(var(--card-foreground)); */
+    /* Or define specific light/dark navbar colors */
+
+  }
+
+  .dark {
+    /* Dark Mode - Adjust OwnsBroker Theme for Dark */
+    --background: 222 47% 11%; /* Very Dark Blue */
+    --foreground: 210 40% 98%; /* Very Light Gray/White */
+
+    --card: 222 47% 15%; /* Slightly Lighter Dark Blue */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 15%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Primary Blue for Dark Mode */
+    --primary: 218 67% 53%; /* Lighter Navy Blue for contrast #3E6CB3 */
+    --primary-foreground: 0 0% 98%; /* White text on primary */
+
+    /* Secondary for Dark Mode */
+    --secondary: 222 47% 20%; /* Darker Muted Blue */
+    --secondary-foreground: 210 40% 98%; /* White text on secondary background */
+
+    /* Muted/Accent: Adjusted blue-grey for dark */
+    --muted: 258 8% 25%; /* Darker blue-grey */
+    --muted-foreground: 258 8% 65%; /* Lighter muted text */
+
+    --accent: 258 8% 30%; /* Darker blue-grey for accent */
+    --accent-foreground: 258 8% 80%; /* Lighter accent text */
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 258 8% 35%; /* Muted Dark Blue-Grey Border */
+    --input: 258 8% 30%;
+    --ring: 218 67% 53%; /* Lighter Blue for focus rings */
+
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --radius: 0.5rem;
+
+    /* Sidebar uses theme colors (same as light mode example, adjust if needed) */
+     --sidebar-background: hsl(222 47% 11%);
+     --sidebar-foreground: hsl(210 40% 98%);
+     --sidebar-primary: hsl(218 67% 53%);
+     --sidebar-primary-foreground: hsl(0 0% 98%);
+     --sidebar-accent: hsl(222 47% 20%);
+     --sidebar-accent-foreground: hsl(210 40% 98%);
+     --sidebar-border: hsl(222 47% 25%);
+     --sidebar-ring: hsl(218 67% 53%);
+
+    /* --- Dark Navbar colors --- */
+    /* Example: Use primary color for dark navbar */
+    /* --navbar-background: hsl(var(--primary)); */
+    /* --navbar-foreground: hsl(var(--primary-foreground)); */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased; /* Added antialiased */
+     scroll-behavior: smooth; /* Added smooth scrolling */
+  }
+  /* Ensure headings inherit the main foreground color by default */
+  h1, h2, h3, h4, h5, h6 {
+      @apply text-foreground; /* Use main foreground for headings */
+  }
+  /* Adjust link color for better contrast */
+  a {
+      @apply text-primary hover:text-primary/90 transition-colors duration-200; /* Added transition */
+  }
+}
+
+
+/* Define keyframes for animations */
+@layer utilities {
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+    }
+    @keyframes slideInFromBottom {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+     @keyframes slideInFromTop {
+        from { transform: translateY(-20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+     @keyframes slideInFromLeft {
+        from { transform: translateX(-20px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+     @keyframes slideInFromRight {
+        from { transform: translateX(20px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+     @keyframes zoomIn {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Animation utility classes */
+    .animate-fadeIn { animation: fadeIn 0.5s ease-out forwards; }
+    .animate-fadeOut { animation: fadeOut 0.5s ease-out forwards; }
+    .animate-slideInFromBottom { animation: slideInFromBottom 0.5s ease-out forwards; }
+    .animate-slideInFromTop { animation: slideInFromTop 0.5s ease-out forwards; }
+    .animate-slideInFromLeft { animation: slideInFromLeft 0.5s ease-out forwards; }
+    .animate-slideInFromRight { animation: slideInFromRight 0.5s ease-out forwards; }
+    .animate-zoomIn { animation: zoomIn 0.3s ease-out forwards; }
+
+    /* Apply default animations to certain elements (optional) */
+    .card-animate {
+      @apply animate-in fade-in duration-300 zoom-in-95;
+    }
+    .section-animate {
+       @apply animate-in fade-in duration-500 slide-in-from-bottom-10;
+    }
+}

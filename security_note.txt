@@ -1,0 +1,8 @@
+
+**Important Security Note (SQLite Context):**
+
+*   Storing passwords in plain text (`'plaintext:Admin@123'`, `'plaintext:Owner@123'`, `'plaintext:User@123'`) is **highly insecure** and should **only** be done for temporary local testing.
+*   In a real application using SQLite (or any SQL database), you **must** hash the passwords using a strong hashing algorithm like bcrypt before storing them.
+*   In this application (using Server Actions), the plaintext prefixing for testing is handled within the `registerUser` action in `src/actions/authActions.ts`.
+*   During login, the `loginUser` action retrieves the `passwordHash` from the database for the given email and verifies the submitted password (checking for the 'plaintext:' prefix).
+*   Ensure your `users` table schema uses the primary key `uid TEXT PRIMARY KEY` and references this `uid` in foreign keys from other tables (e.g., `bookings.userId`, `properties.ownerId`, `roleRequests.userId` should all reference `users.uid`). Do not use a separate `userId` column alongside `uid`.
